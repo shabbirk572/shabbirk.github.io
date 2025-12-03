@@ -1,0 +1,440 @@
+!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Syed Muhammad Shabbir Kazmi | York University Student</title>
+
+    <meta name="description" content="Personal website of Syed Muhammad Shabbir Kazmi, a Computer Science student at York University.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* ---------- CSS RESET / BASE ---------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f5f8fc;
+            --color-text: #1a1a1a;
+
+            /* Hunter green theme */
+            --color-primary: #355E3B;       /* Hunter green */
+            --color-primary-light: #4E7D51; /* Lighter hunter green */
+
+            --color-muted: #64748b;
+            --color-border: #d1d5db;
+            --shadow-soft: 0 3px 10px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 4px 10px rgba(0, 0, 0, 0.25);
+            --radius-card: 12px;
+            --transition-fast: 0.25s ease;
+            --container-width: 900px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* ---------- SKIP LINK (ACCESSIBILITY) ---------- */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: #ffffff;
+            color: var(--color-primary);
+            padding: 8px 14px;
+            border-radius: 0 0 8px 8px;
+            font-size: 0.9em;
+            box-shadow: var(--shadow-soft);
+            z-index: 20;
+        }
+
+        .skip-link:focus {
+            left: 12px;
+            outline: 2px solid var(--color-primary-light);
+        }
+
+        /* ---------- NAVBAR ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--color-primary);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .navbar-title a {
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #e5e7eb;
+        }
+
+        .navbar-title a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .navbar-links a {
+            color: #e0f2e9;
+            text-decoration: none;
+            font-size: 0.98em;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color var(--transition-fast);
+        }
+
+        .navbar-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 2px;
+            background: #ffffff;
+            transition: width var(--transition-fast);
+        }
+
+        .navbar-links a:hover {
+            color: #ffffff;
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ---------- MAIN LAYOUT ---------- */
+        main {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 40px 20px 60px 20px;
+        }
+
+        /* ---------- HERO / TOP SECTION ---------- */
+        .top-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 26px;
+            margin-bottom: 50px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: 700;
+            box-shadow: var(--shadow-strong);
+            flex-shrink: 0;
+        }
+
+        .hero-text-group {
+            min-width: 0;
+        }
+
+        .site-title {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .site-subtitle {
+            font-size: 1.1em;
+            color: #475569;
+            margin: 6px 0 0 0;
+            font-weight: 500;
+        }
+
+        .tagline {
+            font-size: 0.98em;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        /* ---------- SECTION STYLES ---------- */
+        .section-block {
+            margin-bottom: 42px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--color-primary);
+            border-left: 5px solid var(--color-primary-light);
+            padding-left: 12px;
+            margin: 0 0 18px 0;
+        }
+
+        .bio-text {
+            font-size: 1.02em;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            text-align: justify;
+            color: #111827;
+        }
+
+        /* ---------- CARD ---------- */
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius-card);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .card h4 {
+            margin: 0 0 6px 0;
+            color: var(--color-primary);
+        }
+
+        .muted {
+            color: var(--color-muted);
+            margin: 0 0 8px 0;
+            font-size: 0.95em;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .project-tagline {
+            font-size: 0.94em;
+            color: var(--color-muted);
+        }
+
+        ul {
+            padding-left: 22px;
+            margin: 0 0 10px 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: #334155;
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-email {
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            margin-top: 24px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 14px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.9em;
+            color: var(--color-muted);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 650px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .top-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .site-title {
+                font-size: 2.1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="navbar">
+            <div class="navbar-title">
+                <a href="#home">Syed M. Shabbir Kazmi</a>
+            </div>
+            <nav class="navbar-links" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#interests">Interests</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section id="home" class="top-section" aria-labelledby="home-title">
+            <div class="avatar" aria-label="Profile avatar with S initial">S</div>
+            <div class="hero-text-group">
+                <h1 id="home-title" class="site-title">Syed Muhammad Shabbir Kazmi</h1>
+                <p class="site-subtitle">BSc Computer Science Student • York University</p>
+                <p class="tagline">Learning, building, and growing at the intersection of technology and real-world problem solving.</p>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section-block" aria-labelledby="about-title">
+            <h2 id="about-title" class="section-title">About Me</h2>
+            <p class="bio-text">
+                Hi! My name is <strong>Syed Muhammad Shabbir Kazmi</strong> and I am a
+                <strong>Computer Science student at York University</strong> (Lassonde School of Engineering).
+                I’m passionate about technology, problem solving, and becoming a better version of myself every day.
+            </p>
+            <p class="bio-text">
+                I enjoy understanding how software, websites, and digital systems work behind the scenes.
+                I’m constantly exploring new ideas, learning new tools, and building confidence through projects,
+                coursework, and real-world experiences.
+            </p>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="section-block" aria-labelledby="education-title">
+            <h2 id="education-title" class="section-title">Education</h2>
+            <article class="card">
+                <h4>York University</h4>
+                <p class="muted">BSc Computer Science • Lassonde School of Engineering</p>
+                <p class="bio-text">
+                    At York, I am building strong foundations in programming, discrete mathematics,
+                    information systems, and how technology supports people, organizations, and society.
+                    My courses help me think logically, solve complex problems, and understand how computing
+                    connects to the real world.
+                </p>
+            </article>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section-block" aria-labelledby="projects-title">
+            <h2 id="projects-title" class="section-title">Projects</h2>
+            <p class="bio-text project-tagline">
+                A few early projects and course-related pieces that are helping me grow my technical skills.
+            </p>
+
+            <div class="project-list">
+                <article class="card">
+                    <h4>Personal Portfolio Website</h4>
+                    <p class="muted">HTML • CSS</p>
+                    <p class="bio-text">
+                        A simple, responsive personal website built from scratch using HTML and CSS.
+                        It introduces who I am, my studies at York University, and my interests in technology.
+                        This project helped me understand page structure, layout, and styling on the web.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h4>Python Practice & Problem Solving</h4>
+                    <p class="muted">Python • Algorithms • Logic</p>
+                    <p class="bio-text">
+                        A collection of small Python exercises focused on loops, conditionals, lists, and functions.
+                        By solving step-by-step problems, I’m learning how to break tasks into smaller pieces and
+                        write clean, readable code.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h4>Information Systems Course Activities</h4>
+                    <p class="muted">Information Systems • Databases • Organizations</p>
+                    <p class="bio-text">
+                        Course activities based on <em>Fundamentals of Information Systems</em>, exploring how data,
+                        software, and people interact inside organizations. These tasks are helping me understand how
+                        technology supports decision-making and business processes.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- INTERESTS -->
+        <section id="interests" class="section-block" aria-labelledby="interests-title">
+            <h2 id="interests-title" class="section-title">Interests</h2>
+            <p class="bio-text">I like learning about:</p>
+
+            <ul>
+                <li>How websites are built with HTML, CSS, and modern web technologies</li>
+                <li>Programming step-by-step and breaking problems into smaller pieces</li>
+                <li>How technology improves daily life, business, and decision-making</li>
+            </ul>
+
+            <p class="bio-text">
+                I enjoy experimenting, building small projects, and slowly growing my technical,
+                communication, and problem-solving skills.
+            </p>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section-block" aria-labelledby="contact-title">
+            <h2 id="contact-title" class="section-title">Contact</h2>
+            <p class="bio-text">
+                You can reach me at:<br>
+                <a href="mailto:shabbirk@my.yorku.ca" class="contact-email">shabbirk@my.yorku.ca</a>
+            </p>
+        </section>
+
+        <footer>
+            <p class="footer-text">
+                &copy; <span id="year"></span> Syed Muhammad Shabbir Kazmi • York University Student
+            </p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
+
